@@ -1,0 +1,243 @@
+<div class="container-fuild pt-5  d-flex justify-content-center shadow-lg background ">
+    <div class="card   bg-white borderde-info p-5 p-md-5 p-sm-5 mb-5 mx-sm-5 mx-5">
+        <div class="card-header shadow-sm bg-white ">
+            <h2 class="text-center heading_h col-md-12 col-sm-12 col-12">
+                <span><i class="bi bi-journals"></i></span>
+                Student Registration
+                <span><i class="bi bi-vector-pen"></i></span>
+            </h2>
+        </div>
+        <form #studentdorm="ngForm">
+            <div class="card-body">
+                <div class="row pt-3">
+                    <div class="col-md-4 col-sm-4 col-12">
+                        <div class="input-group mb-2 ">
+                            <span class="input-group-text comm_colo" id="basic-addon1"><i class="fa-solid fa-user "
+                                    style="color: #e1121282;"></i>
+                            </span>
+                            <input type="text" #Name="ngModel" required minlength="5" name="name"
+                                (ngModelChange)="createfullname()" [(ngModel)]="studentfrom.firstName"
+                                class="form-control ">
+                        </div>
+                        <div class="text-danger " *ngIf="Name.touched||Name.dirty">
+                            <span *ngIf="Name.errors?.['required']">* This is
+                                Required </span>
+                            <span *ngIf="Name.errors?.['minlength']">* Min 5 char</span>
+                        </div>
+                        <label for=""> First Name</label>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-12">
+                        <div class="input-group mb-2">
+                            <span class="input-group-text comm_colo" id="basic-addon1"><i class="fa-solid fa-user"
+                                    style="color: #e1121282;"></i>
+                            </span>
+                            <input type="text" #mName="ngModel" required minlength="5" name="middleName"
+                                (ngModelChange)="createfullname()" [(ngModel)]="studentfrom.middleName"
+                                class="form-control">
+                        </div>
+                        <div class="text-danger" *ngIf="mName.touched || mName.dirty">
+                            <span *ngIf="mName.errors?.['required']">* This is Required </span>
+                            <span *ngIf="mName.errors?.['minlength']">* Min 5 char</span>
+                        </div>
+                        <label for=""> Middle Name</label>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-12">
+                        <div class="input-group mb-2">
+                            <span class="input-group-text comm_colo" id="basic-addon1"><i class="fa-solid fa-user"
+                                    style="color: #e1121282;"></i>
+                            </span>
+
+                            <input type="text" name="lastName" required minlength="5" #lname="ngModel"
+                                (ngModelChange)="createfullname()" [(ngModel)]="studentfrom.lastName"
+                                class="form-control">
+                        </div>
+                        <div class="text-danger" *ngIf="lname.touched || lname.dirty">
+                            <span *ngIf="lname.errors?.['required']">* This is Required </span>
+                            <span *ngIf="lname.errors?.['minlength']"> * Min 5 char</span>
+
+                        </div>
+                        <label for=""> Last Name</label>
+                    </div>
+                </div>
+                <div class="row  pt-3">
+                    <div class="col-md-8 col-sm-8 col-12">
+                        <input [value]="fullname" disabled type="text" class="form-control">
+                        <label for=""> Full Name</label>
+                    </div>
+                </div>
+                <div class="row  pt-3">
+                    <div class="col-md-7 col-sm-7 col-12">
+                        <div class="input-group mb-2">
+                            <span class="input-group-text comm_colo" id="basic-addon1"><i class="fa-solid fa-envelope"
+                                    style="color: #e1121282;"></i></span>
+                            <input name="email" #email="ngModel" required
+                                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"
+                                [(ngModel)]="studentfrom.email" type="text" class="form-control">
+                        </div>
+                        <div class="text-danger" *ngIf="email.touched ||email.dirty">
+                            <span *ngIf="email.errors?.['required']">* This is Required</span>
+                            <span *ngIf="email.errors?.['pattern']"> * Please enter a valid email </span>
+                        </div>
+                        <label for=""> Email</label>
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-12">
+                        <div class="input-group mb-2">
+                            <span class="input-group-text comm_colo " id="basic-addon1"><i
+                                    class="fa-solid fa-phone-volume" style="color: #e1121282;"></i></span>
+                            <input name="contactno" #contactnoo="ngModel" required [(ngModel)]="studentfrom.contactno"
+                                minlength="10" type="text" class="form-control">
+                        </div>
+                        <div class="text-danger" *ngIf="contactnoo.touched||contactnoo.dirty">
+                            <span *ngIf="contactnoo.errors?.['required']"> * This is Required</span>
+                            <span *ngIf="contactnoo.errors?.['minlength']"> * Enter 10 Digits only </span>
+                        </div>
+                        <label for=""> Contact Number</label>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-md-4 col-sm-4 col-12">
+                        <input type="date" (change)="dobDate()" [(ngModel)]="studentfrom.dob" class="form-control"
+                            name="dob">
+                        <label for=""> Select DOB </label>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-12">
+                        <input type="text" [(ngModel)]="studentfrom.age" name="age" class="form-control">
+                        <label for=""> Age</label>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-12" *ngIf="studentfrom.age >18 ">
+                        <input type="text" name="licence" #licences="ngModel" required
+                            [(ngModel)]="studentfrom.licence">
+                        <div class="text-danger" *ngIf="licences.touched ||licences.dirty">
+                            <span *ngIf="licences.errors?.['required']"> * This is Required</span>
+                        </div>
+                        <label for="">Licence No</label>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-md-5  col-sm-5 col-12">
+                        <div class="input-group mb-2">
+                            <span class="input-group-text comm_colo" id="basic-addon1"><i
+                                    class="fa-solid fa-graduation-cap" style="color: #e1121282;"></i></span>
+                            <select [(ngModel)]="studentfrom.eduction" name="eduction" id=""
+                                class="input-group-text bg-white form-control">
+                                <option value=""> Select Eduction</option>
+                                <option value="12th"> 12th</option>
+                                <option value="Gradution">Gradution</option>
+                                <option value="other">other</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row pt-3" *ngIf="studentfrom.eduction =='other'">
+                    <div class="col-md-4  col-sm-4 col-12">
+                        <input [(ngModel)]="studentfrom.highestedu" #highesteduu="ngModel" required name="highestedu"
+                            type="text" class="form-control">
+                        <div class="text-danger" *ngIf="highesteduu.touched||highesteduu.dirty">
+                            <span *ngIf="highesteduu.errors?.['required']">* This is Required</span>
+                        </div>
+                        <label for=""> Enter Highest Eduction</label>
+                    </div>
+                    <div class="col-md-4  col-sm-4 col-12">
+                        <input [(ngModel)]="studentfrom.highpermark" name="highpermark" #highpermark="ngModel" required
+                            type="text" class="form-control">
+                        <div class="text-danger" *ngIf="highpermark.touched||highpermark.dirty">
+                            <span *ngIf="highpermark.errors?.['required']">* This is Required</span>
+                        </div>
+                        <label for=""> % of Marks </label>
+                    </div>
+                    <div class="col-md-4  col-sm-4 col-12">
+                        <input [(ngModel)]="studentfrom.highpassingyear" name="highpassingyear"
+                            #highpassingyear='ngModel' required maxlength="4" type="text" class="form-control">
+                        <div class="text-danger" *ngIf="highpermark.touched||highpermark.dirty">
+                            <span *ngIf="highpermark.errors?.['required']">* This is Required</span>
+
+                        </div>
+                        <label for="">Passing Year</label>
+                    </div>
+                </div>
+                <div class="row pt-3" *ngIf="studentfrom.eduction =='12th'">
+                    <div class="col-md-6  col-sm-6 col-12">
+                        <input [(ngModel)]="studentfrom.hsc" name="hsc" #hsc="ngModel" required class="form-control">
+                        <div class="text-danger" *ngIf="hsc.touched||hsc.dirty">
+                            <span *ngIf="hsc.errors?.['required']">* This is Required</span>
+                        </div>
+                        <label for="">Percentage</label>
+                    </div>
+                    <div class="col-md-6  col-sm-4 col-12">
+                        <input [(ngModel)]="studentfrom.hscpassing" #hscpassing="ngModel" name="hscpassing" required
+                            maxlength="4" type="text" class="form-control">
+                        <div class="text-danger" *ngIf="hscpassing.touched||hscpassing.dirty">
+                            <span *ngIf="hscpassing.errors?.['required']">* This is Required</span>
+                        </div>
+                        <label for="">Passing Year</label>
+                    </div>
+                </div>
+                <div class="row pt-3 " *ngIf="studentfrom.eduction =='Gradution'">
+                    <div class="col-md-3  col-sm-3 col-12">
+                        <input [(ngModel)]="studentfrom.degfyear" #degfyear="ngModel" required
+                            pattern="^(?:9\.00|0*(?:[0-9](?:\.\d{1,2})?))$" name="degfyear" type="text"
+                            class="form-control">
+                        <div class="text-danger" *ngIf="degfyear.touched||degfyear.dirty">
+                            <span *ngIf="degfyear.errors?.['required']">* This is Required</span>
+                            <span *ngIf="degfyear.errors?.['pattern']">* CGPA </span>
+                        </div>
+                        <label for="">1st year </label>
+                    </div>
+                    <div class="col-md-3  col-sm-3 col-12">
+                        <input [(ngModel)]="studentfrom.degsyear" #degsyear="ngModel" name="degsyear" required
+                            pattern="^(?:9\.00|0*(?:[0-9](?:\.\d{1,2})?))$" type="text" class="form-control">
+                        <div class="text-danger" *ngIf="degsyear.touched||degsyear.dirty">
+                            <span *ngIf="degsyear.errors?.['required']">* This is Required</span>
+                            <span *ngIf="degsyear.errors?.['pattern']"> * CGPA </span>
+                        </div>
+                        <label for="">2nd year </label>
+                    </div>
+                    <div class="col-md-3  col-sm-3 col-12">
+                        <input [(ngModel)]="studentfrom.degtyear" #degtyear="ngModel" required
+                            pattern="^(?:9\.00|0*(?:[0-9](?:\.\d{1,2})?))$" name="degtyear" type="text"
+                            class="form-control">
+                        <div class="text-danger" *ngIf="degtyear.touched||degtyear.dirty">
+                            <span *ngIf="degtyear.errors?.['required']">* This is Required</span>
+                            <span *ngIf="degtyear.errors?.['minlength']">* CGPA </span>
+                        </div>
+                        <label for=""> 3rd year</label>
+                    </div>
+                    <div class="col-md-3  col-sm-3 col-12">
+                        <input [(ngModel)]="studentfrom.degpassing" required maxlength="4" #degpassing="ngModel"
+                            name="degpassing" type="text" class="form-control">
+
+                        <div class="text-danger" *ngIf="degpassing.touched||degpassing.dirty">
+                            <span *ngIf="degpassing.errors?.['required']">* This is Required</span>
+
+                        </div>
+                        <label for="">Passing Year</label>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-md-6  col-sm-3 col-12">
+                        <input [(ngModel)]="studentfrom.startyear" name="startyear" type="date" class="form-control">
+                        <label for=""> Start year </label>
+                    </div>
+                    <div class="col-md-6">
+                        <input (change)="eductionYear()" name="endyear" [(ngModel)]="studentfrom.endyear" type="date"
+                            class="form-control">
+                        <label for=""> End year</label>
+                    </div>
+                </div>
+                <div class="row pt-3">
+                    <div class="col-12 col-md-6 col-sm-12 col-12 text-center p-sm-2 p-md-2">
+                        <div class="btn btn-sm bg-secondary text-white " (click)="onReset()">
+                            Reset
+                        </div>
+                    </div>
+                    <div class="col-12 col-md-6 col-sm-12  col-12 text-center p-sm-2 p-md-2">
+                        <div class="btn btn-sm bg-success text-white ">
+                            Save
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
