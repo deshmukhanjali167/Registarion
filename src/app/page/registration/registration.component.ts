@@ -77,6 +77,9 @@ export class RegistrationComponent  {
     }
 
   }
+  onSave(){
+    alert("Submit Successfully")
+  }
 
 }
 
