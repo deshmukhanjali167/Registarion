@@ -1,5 +1,5 @@
-<div class="container-fuild pt-5  d-flex justify-content-center shadow-lg background ">
-    <div class="card   bg-white borderde-info p-5 p-md-5 p-sm-5 mb-5 mx-sm-5 mx-5">
+<div class="container-fluid pt-5  d-flex justify-content-center shadow-lg background ">
+    <div class="card   bg-white p-5 p-md-5 p-sm-5 mb-5 mx-sm-5 mx-5">
         <div class="card-header shadow-sm bg-white ">
             <h2 class="text-center heading_h col-md-12 col-sm-12 col-12">
                 <span><i class="bi bi-journals"></i></span>
@@ -15,14 +15,14 @@
                             <span class="input-group-text comm_colo" id="basic-addon1"><i class="fa-solid fa-user "
                                     style="color: #e1121282;"></i>
                             </span>
-                            <input type="text" #Name="ngModel" required minlength="5" name="name"
+                            <input type="text" #Name="ngModel" required minlength="3" name="name"
                                 (ngModelChange)="createfullname()" [(ngModel)]="studentfrom.firstName"
                                 class="form-control ">
                         </div>
                         <div class="text-danger " *ngIf="Name.touched||Name.dirty">
                             <span *ngIf="Name.errors?.['required']">* This is
                                 Required </span>
-                            <span *ngIf="Name.errors?.['minlength']">* Min 5 char</span>
+                            <span *ngIf="Name.errors?.['minlength']">* Min 3 char</span>
                         </div>
                         <label for=""> First Name</label>
                     </div>
@@ -31,13 +31,13 @@
                             <span class="input-group-text comm_colo" id="basic-addon1"><i class="fa-solid fa-user"
                                     style="color: #e1121282;"></i>
                             </span>
-                            <input type="text" #mName="ngModel" required minlength="5" name="middleName"
+                            <input type="text" #mName="ngModel" required minlength="3" name="middleName"
                                 (ngModelChange)="createfullname()" [(ngModel)]="studentfrom.middleName"
                                 class="form-control">
                         </div>
                         <div class="text-danger" *ngIf="mName.touched || mName.dirty">
                             <span *ngIf="mName.errors?.['required']">* This is Required </span>
-                            <span *ngIf="mName.errors?.['minlength']">* Min 5 char</span>
+                            <span *ngIf="mName.errors?.['minlength']">* Min 3 char</span>
                         </div>
                         <label for=""> Middle Name</label>
                     </div>
@@ -46,15 +46,13 @@
                             <span class="input-group-text comm_colo" id="basic-addon1"><i class="fa-solid fa-user"
                                     style="color: #e1121282;"></i>
                             </span>
-
-                            <input type="text" name="lastName" required minlength="5" #lname="ngModel"
+                            <input type="text" name="lastName" required minlength="3" #lname="ngModel"
                                 (ngModelChange)="createfullname()" [(ngModel)]="studentfrom.lastName"
                                 class="form-control">
                         </div>
                         <div class="text-danger" *ngIf="lname.touched || lname.dirty">
                             <span *ngIf="lname.errors?.['required']">* This is Required </span>
-                            <span *ngIf="lname.errors?.['minlength']"> * Min 5 char</span>
-
+                            <span *ngIf="lname.errors?.['minlength']"> * Min 3 char</span>
                         </div>
                         <label for=""> Last Name</label>
                     </div>
@@ -105,7 +103,7 @@
                         <label for=""> Age</label>
                     </div>
                     <div class="col-md-4 col-sm-4 col-12" *ngIf="studentfrom.age >18 ">
-                        <input type="text" name="licence" #licences="ngModel" required
+                        <input type="text" name="licence" #licences="ngModel" required class="form-control"
                             [(ngModel)]="studentfrom.licence">
                         <div class="text-danger" *ngIf="licences.touched ||licences.dirty">
                             <span *ngIf="licences.errors?.['required']"> * This is Required</span>
@@ -118,11 +116,11 @@
                         <div class="input-group mb-2">
                             <span class="input-group-text comm_colo" id="basic-addon1"><i
                                     class="fa-solid fa-graduation-cap" style="color: #e1121282;"></i></span>
-                            <select [(ngModel)]="studentfrom.eduction" name="eduction" id=""
+                            <select [(ngModel)]="studentfrom.eduction" name="eduction" id="stu"
                                 class="input-group-text bg-white form-control">
                                 <option value=""> Select Eduction</option>
                                 <option value="12th"> 12th</option>
-                                <option value="Gradution">Graduation</option>
+                                <option value="gradution">Graduation</option>
                                 <option value="other">other</option>
                             </select>
                         </div>
@@ -172,8 +170,8 @@
                         <label for="">Passing Year</label>
                     </div>
                 </div>
-                <div class="row pt-3 " *ngIf="studentfrom.eduction =='Gradution'">
-                    <div class="col-md-3  col-sm-3 col-12">
+                <div class="row pt-3 " *ngIf="studentfrom.eduction =='gradution'">
+                    <div class="col-md-4  col-lg-4  col-sm-4 col-12">
                         <input [(ngModel)]="studentfrom.degfyear" #degfyear="ngModel" required
                             pattern="^(?:9\.00|0*(?:[0-9](?:\.\d{1,2})?))$" name="degfyear" type="text"
                             class="form-control">
@@ -183,7 +181,7 @@
                         </div>
                         <label for="">1st year </label>
                     </div>
-                    <div class="col-md-3  col-sm-3 col-12">
+                    <div class="col-md-4 col-lg-4 col-sm-4 col-12">
                         <input [(ngModel)]="studentfrom.degsyear" #degsyear="ngModel" name="degsyear" required
                             pattern="^(?:9\.00|0*(?:[0-9](?:\.\d{1,2})?))$" type="text" class="form-control">
                         <div class="text-danger" *ngIf="degsyear.touched||degsyear.dirty">
@@ -192,7 +190,7 @@
                         </div>
                         <label for="">2nd year </label>
                     </div>
-                    <div class="col-md-3  col-sm-3 col-12">
+                    <div class="col-md-4 col-lg-4  col-sm-4 col-12">
                         <input [(ngModel)]="studentfrom.degtyear" #degtyear="ngModel" required
                             pattern="^(?:9\.00|0*(?:[0-9](?:\.\d{1,2})?))$" name="degtyear" type="text"
                             class="form-control">
@@ -201,16 +199,6 @@
                             <span *ngIf="degtyear.errors?.['minlength']">* CGPA </span>
                         </div>
                         <label for=""> 3rd year</label>
-                    </div>
-                    <div class="col-md-3  col-sm-3 col-12">
-                        <input [(ngModel)]="studentfrom.degpassing" required maxlength="4" #degpassing="ngModel"
-                            name="degpassing" type="text" class="form-control">
-
-                        <div class="text-danger" *ngIf="degpassing.touched||degpassing.dirty">
-                            <span *ngIf="degpassing.errors?.['required']">* This is Required</span>
-
-                        </div>
-                        <label for="">Passing Year</label>
                     </div>
                 </div>
                 <div class="row pt-3">
@@ -226,18 +214,13 @@
                 </div>
                 <div class="row pt-3">
                     <div class=" col-md-6 col-sm-6 col-6 text-center p-sm-2 p-md-2">
-                        <div class="btn btn-sm bg-secondary text-white " (click)="onReset()">
-                            Reset
-                        </div>
+                        <input type="submit" class="btn btn-success text-white" value="Reset " (click)="onReset()">
                     </div>
                     <div class=" col-md-6 col-sm-6  col-6 text-center p-sm-2 p-md-2">
-                        <div class="btn btn-sm bg-success text-white" (click)="onSave()">
-                            Save
-                        </div>
+                        <input type="submit" class="btn btn-success text-white" value="Save " (click)="onSave()">
                     </div>
                 </div>
             </div>
         </form>
     </div>
 </div>
-
